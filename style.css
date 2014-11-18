@@ -1,0 +1,3 @@
+.example {background:#ffe;border:1px solid #ddd;display:block;font:Courier New;margin-bottom:20px;padding:5px 10px;}
+.output a,.more a {display:block;margin:0 0 10px;}
+.output a:after,.more a:after {content:" \bb";}

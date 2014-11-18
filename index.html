@@ -1,0 +1,40 @@
+<!doctype html>
+<link href="style.css" rel="stylesheet" />
+<script src="scripts/mithril.js"></script>
+<body>
+    <h1>This is a test</h1>
+    <div id="example" class="example output"></div>
+</body>
+<script>
+//namespace
+var app = {};
+
+//model
+app.PageList = function() {
+    return m.request({method: "GET", url: "pages.json"});
+};
+
+//controller
+app.controller = function() {
+    var pages = app.PageList();
+    return {
+        pages: pages,
+        rotate: function() {
+            pages().push(pages().shift());
+        }
+    }
+};
+
+//view
+app.view = function(ctrl) {
+    return [
+        ctrl.pages().map(function(page) {
+            return m("a", {href: page.url}, page.title);
+        }),
+        m("button", {onclick: ctrl.rotate}, "Rotate links")
+    ];
+};
+
+//initialize
+m.module(document.getElementById("example"), app);
+</script>
